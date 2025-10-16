@@ -1,5 +1,9 @@
 # CS230_Project_1
 
+### Jake Terry <br/> Elden Johnson
+
+
+## Partition
 Partition will return two Hashmaps, one containing instructions, value/address, and addressing type, keyed with an index. The other containing the label, keyed with the index it exists. 
 
 
