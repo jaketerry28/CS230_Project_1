@@ -22,18 +22,20 @@ public class Partitioner {
         HashMap<Integer, List<String>> instructions = new HashMap<>();
         HashMap<Integer, List<String>> branches = new HashMap<>();
         int lineNum = 0;
-
+        int bytesUsed = 0;
         try {
             File file = new File(filepath);
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()) {
+                String hex = String.format("%04X", bytesUsed);
+                System.out.println(hex);
                 String line = scanner.nextLine();
 
                 // clean up
                 line = line.trim();
                 line = line.replace(",", "");
-                line = line.split(";")[0];       // remove comments
+                line = line.split(";")[0];       // first split, remove comments
                 if (line.isBlank() || line.startsWith(";")) continue; // skip empty lines
 
                 // find and store labels
@@ -51,10 +53,12 @@ public class Partitioner {
                 }
 
                 // store instructions
-                String[] parts = line.split("\\s+");
-                instructions.put(lineNum, Arrays.asList(parts));
+                List<String> parts = new ArrayList<>(Arrays.asList(line.split("\\s+")));
+                parts.add(hex);
+                instructions.put(lineNum, parts);
 
                 lineNum++;
+                bytesUsed +=  parts.size() - 1;
             }
 
             scanner.close();
