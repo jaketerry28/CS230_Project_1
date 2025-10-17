@@ -18,9 +18,14 @@ public class Main {
         }
 
         // Log branches
-        System.out.println("\nBranches:");
-        for (int i : data.branches.keySet()) {
-            System.out.println(i + ": " + data.branches.get(i));
-        }
+//        System.out.println("\nBranches:");
+//        for (int i : data.branches.keySet()) {
+//            System.out.println(i + ": " + data.branches.get(i));
+//
+//        }
+
+        // Example on how to get individual line instructions
+
+        //System.out.println(data.instructions.get(1).get(0));
     }
 }
