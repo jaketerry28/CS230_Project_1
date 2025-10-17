@@ -20,7 +20,7 @@ public class Main {
 //         Log branches
         System.out.println("\nBranches:");
         for (String i : data.branches.keySet()) {
-            System.out.println(i + " " + data.branches.get(i));
+            System.out.println(i + ":" + data.branches.get(i));
         } // end for
 
 //        Example on how to get individual line instructions
