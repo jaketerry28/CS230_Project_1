@@ -42,10 +42,6 @@ public class Partitioner {
                 String firstWord = line.split("\\s+")[0];
 
                 if (firstWord.endsWith(":")) {
-                    firstWord = firstWord.replace(":", "");
-                    System.out.println("Detected label: " + firstWord);
-
-                    branches.put(firstWord, hex);
 
                     // Remove the label from the line for instructions
                     line = line.substring(firstWord.length()).trim();
@@ -53,6 +49,12 @@ public class Partitioner {
                         lineNum++;
                         continue; // skip if nothing remains after label
                     }
+
+                    firstWord = firstWord.replace(":", "");
+                    System.out.println("Detected label: " + firstWord);
+
+                    branches.put(firstWord, hex);
+
                 }
 
                 // store instructions

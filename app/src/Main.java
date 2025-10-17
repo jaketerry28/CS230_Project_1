@@ -20,16 +20,16 @@ public class Main {
 //         Log branches
         System.out.println("\nBranches:");
         for (String i : data.branches.keySet()) {
-            System.out.println(i + " " + data.branches.get(i));
+            System.out.println(i + ":" + data.branches.get(i));
         } // end for
 
 //        Example on how to get individual line instructions
 //        System.out.println(data.instructions.get(1).get(0));
 //
 //        for (int i : data.instructions.keySet()) {
-//            if (data.instructions.get(i).get(0).contains("BR")) {
-//                String labelAddress = data.instructions.get(i).get(1);
-//                System.out.println(data.branches.get(labelAddress));
+//            if (data.instructions.get(i).get(0).contains("BR")) { // if first list element of each key has 'BR'
+//                String labelAddress = data.instructions.get(i).get(1); // get the branching label 
+//                System.out.println(data.branches.get(labelAddress)); // use label as key to access byte address inside branches hashMap
 //            }
 //        } // end for
     }
