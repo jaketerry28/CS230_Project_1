@@ -7,10 +7,10 @@ public class Partitioner {
     // wrapper class to hold both instructions and branches
     public static class ParsedData {
         public HashMap<Integer, List<String>> instructions;
-        public HashMap<Integer, List<String>> branches;
+        public HashMap<String, String> branches;
 
         public ParsedData(HashMap<Integer, List<String>> instructions,
-                          HashMap<Integer, List<String>> branches) {
+                          HashMap<String, String> branches) {
             this.instructions = instructions;
             this.branches = branches;
         }
@@ -20,7 +20,7 @@ public class Partitioner {
     public static ParsedData parse(String filepath) {
 
         HashMap<Integer, List<String>> instructions = new HashMap<>();
-        HashMap<Integer, List<String>> branches = new HashMap<>();
+        HashMap<String, String> branches = new HashMap<>();
         int lineNum = 0;
         int bytesUsed = 0;
         try {
@@ -40,9 +40,12 @@ public class Partitioner {
 
                 // find and store labels
                 String firstWord = line.split("\\s+")[0];
+
                 if (firstWord.endsWith(":")) {
+                    firstWord = firstWord.replace(":", "");
                     System.out.println("Detected label: " + firstWord);
-                    branches.put(lineNum, Arrays.asList(firstWord.replace(":", ""))); // store label
+
+                    branches.put(firstWord, hex);
 
                     // Remove the label from the line for instructions
                     line = line.substring(firstWord.length()).trim();
