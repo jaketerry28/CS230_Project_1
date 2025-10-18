@@ -24,13 +24,15 @@ public class Main {
         } // end for
 
         System.out.println("\n======================================");
-        System.out.println("\nAfter Instructions");
+        System.out.println("\nAfter Assembly:\n");
 
         for (Object i : list) {
             if (i != null) {
                 System.out.print(i.toString() + " ");
             }
         } // end for
+
+        System.out.println("\n");
     }
 }
 

@@ -30,7 +30,6 @@ public class Partitioner {
 
             while (scanner.hasNextLine()) {
                 String hex = String.format("%04X", bytesUsed);
-                System.out.println(hex);
                 String line = scanner.nextLine();
 
                 // clean up
@@ -53,8 +52,6 @@ public class Partitioner {
                     }
 
                     firstWord = firstWord.replace(":", "");
-                    // System.out.println("Detected label: " + firstWord);
-
                     branches.put(firstWord, hex);
 
                 }

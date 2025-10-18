@@ -2,13 +2,13 @@ import java.util.*;
 
 public class Instructions {
 
-    ArrayList convertValues = new ArrayList();
+    ArrayList<String> convertValues = new ArrayList();
     String addressingMode;
     String instructionMode;
     String bitInstructions;
     String value;
 
-    public ArrayList instructionConvert(Partitioner.ParsedData data) {
+    public ArrayList<String> instructionConvert(Partitioner.ParsedData data) {
         //looks to see what instruction set is present and gets the corresponding value
         for (int i : data.assembly_code.keySet()) {
 
@@ -44,6 +44,11 @@ public class Instructions {
             else if (data.assembly_code.get(i).get(0).contains("STOP")) {
                 instructionMode = this.getSTOP();
             }
+
+            else if (data.assembly_code.get(i).get(0).contains(".END")) {
+                instructionMode = this.getEND();
+            }
+
             else if (data.assembly_code.get(i).get(0).contains("CPBA")) {
                 instructionMode = this.getCPBA();
             }
@@ -115,7 +120,11 @@ public class Instructions {
         BRNE = "1A";
         return BRNE;
     }
-
+    public String getEND() {
+        String END;
+        END = "zz";
+        return END;
+    }
     public String getAddressingMode(String mode) {
         String addressingMode;
         if (mode.equals("i")){
@@ -131,6 +140,9 @@ public class Instructions {
     public String getValue(Partitioner.ParsedData data, String value){
         if (value.contains("0x")){
             value = value.split("0x")[1];
+            if (value.length() < 4){
+                value = "00" + value;
+            }
         }
         else if  (!value.isEmpty()){
             value = data.branches.get(value);
