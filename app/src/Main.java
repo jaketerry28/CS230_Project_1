@@ -1,3 +1,5 @@
+import java.util.*;
+
 
 public class Main {
 
@@ -11,28 +13,28 @@ public class Main {
         // Call the parser
         Partitioner.ParsedData data = Partitioner.parse(args[0]);
 
+        // Call the converter
+        Instructions converter = new Instructions();
+        ArrayList list = converter.instructionConvert(data);
+
         // Log instructions
-        System.out.println("\nInstructions:");
-        for (int i : data.instructions.keySet()) {
-            System.out.println(i + ": " + data.instructions.get(i));
+        System.out.println("\nBefore Instructions:");
+        for (int i : data.assembly_code.keySet()) {
+            System.out.println(i + ": " + data.assembly_code.get(i));
         } // end for
 
-//         Log branches
-        System.out.println("\nBranches:");
-        for (String i : data.branches.keySet()) {
-            System.out.println(i + ":" + data.branches.get(i));
+        System.out.println("\n======================================");
+        System.out.println("\nAfter Assembly:\n");
+
+        for (Object i : list) {
+            if (i != null) {
+                System.out.print(i.toString() + " ");
+            }
         } // end for
 
-//        Example on how to get individual line instructions
-//        System.out.println(data.instructions.get(1).get(0));
-//
-//        for (int i : data.instructions.keySet()) {
-//            if (data.instructions.get(i).get(0).contains("BR")) { // if first list element of each key has 'BR'
-//                String labelAddress = data.instructions.get(i).get(1); // get the branching label 
-//                System.out.println(data.branches.get(labelAddress)); // use label as key to access byte address inside branches hashMap
-//            }
-//        } // end for
+        System.out.println("\n");
     }
 }
+
 
 
